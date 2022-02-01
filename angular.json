@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "requests-rxjs": {
+    "pokemon-rxjs": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/requests-rxjs",
+            "outputPath": "dist/pokemon-rxjs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,9 +31,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/materialize-css/dist/css/materialize.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/materialize-css/dist/js/materialize.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "requests-rxjs:build:production"
+              "browserTarget": "pokemon-rxjs:build:production"
             },
             "development": {
-              "browserTarget": "requests-rxjs:build:development"
+              "browserTarget": "pokemon-rxjs:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "requests-rxjs:build"
+            "browserTarget": "pokemon-rxjs:build"
           }
         },
         "test": {
@@ -99,6 +101,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -107,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "requests-rxjs"
+  "defaultProject": "pokemon-rxjs"
 }

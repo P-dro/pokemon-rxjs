@@ -1,0 +1,21 @@
+<div *ngIf="(pokemonList$ | async) as pokemonsList; else loading">
+    <div class="collection">
+        <a *ngFor="let pokemonList of pokemonsList.results" class="collection-item"
+            [routerLink]="['/pokemon-detail', pokemonList.url]">{{ pokemonList.name | titlecase }}</a>
+    </div>
+    <ul class="pagination center" *ngIf="(currentPage$ | async) as currentPage;">
+        <li class="waves-effect" [ngClass]="{'disabled': (currentPage - 1 === 0) }"><a
+                (click)="getPokemons(currentPage - 1)"><i class="material-icons">chevron_left</i></a></li>
+        <li class="waves-effect" [ngClass]="{'active': currentPage == page }"
+            *ngFor="let page of pokemonListPagination(pokemonsList.count, currentPage);index as i">
+            <a (click)="getPokemons(page)">{{page}}</a>
+        </li>
+        <li class="waves-effect" [ngClass]="{'disabled': (currentPage === getTotalPages(pokemonsList.count)) }"><a
+                (click)="getPokemons(currentPage + 1)"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+<ng-template #loading>
+    <div class="progress">
+        <div class="indeterminate"></div>
+    </div>
+</ng-template>
