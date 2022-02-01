@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 import { environment } from 'src/environments/environment';
-import { PokemonListResponse } from '../models/pokemon-list';
+
 import { delay, take, tap } from 'rxjs';
+import { PokemonListResponse } from 'src/app/models/pokemon-list';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonListService {
+export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
@@ -18,19 +19,15 @@ export class PokemonListService {
     return this.http.get<PokemonListResponse>(`${environment.pokeApi}pokemon?limit=20&offset=${offset}`).
       pipe(
         delay(2000),
-        take(1),
-        tap()
+        take(1)
       );
 
   }
 
   public getPokemon(url: string) {
-    console.log('pokemon ->', url)
     return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/161/`).
     pipe(
-      delay(2000),
       take(1),
-      tap()
     );
   }
 

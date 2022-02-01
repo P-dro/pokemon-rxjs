@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap, Observable, Subscription, switchMap, take, tap } from 'rxjs';
-import { PokemonListService } from '../pokemon-list/pokemon-list.service';
+import { Subscription } from 'rxjs';
+
+import { PokemonService } from '../shared/services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -15,18 +16,18 @@ export class PokemonDetailComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private pokemonListService: PokemonListService
+    private PokemonService: PokemonService
   ) { }
 
   ngOnInit(): void {
     this.pokemon = this.router.params.subscribe((param: any ) => {
       this.getPokemon(param['url'])
     })
-    this.pokemonListService.getPokemons(2);
+    this.PokemonService.getPokemons(2);
   }
 
   getPokemon(url: string) {
-    this.pokemonListService.getPokemon(url);
+    this.PokemonService.getPokemon(url);
   }
 
 }

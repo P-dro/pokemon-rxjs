@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { map, Observable, Subscription, take, tap } from 'rxjs';
 import { PokemonListResponse } from '../models/pokemon-list';
-import { PokemonListService } from './pokemon-list.service';
+import { PokemonService } from '../shared/services/pokemon.service';
+
 
 @Component({
   selector: 'app-pokemon-list',
@@ -25,7 +26,7 @@ export class PokemonListComponent implements OnInit {
 
 
   constructor(
-    private pokemonListService: PokemonListService,
+    private PokemonService: PokemonService,
     private router: ActivatedRoute,
     private route: Router
     ) { }
@@ -41,7 +42,7 @@ export class PokemonListComponent implements OnInit {
 
   getPokemons(page: number): void {
     this.route.navigate(['pokemon-list', page]);
-    this.pokemonList$ = this.pokemonListService.getPokemons(page);
+    this.pokemonList$ = this.PokemonService.getPokemons(page);
   }
 
   getTotalPages(count: number): number {
