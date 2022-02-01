@@ -11,23 +11,24 @@ import { PokemonService } from '../shared/services/pokemon.service';
 })
 export class PokemonDetailComponent implements OnInit {
 
-  pokemon!: Subscription;
-  url: string = '';
+  
+  idPokemon: string = '';
+  pokemon: Subscription = this.router.params.subscribe((param: any ) => {
+    this.idPokemon = param['url'];
+  }) 
 
   constructor(
     private router: ActivatedRoute,
     private PokemonService: PokemonService
   ) { }
-
+  
   ngOnInit(): void {
-    this.pokemon = this.router.params.subscribe((param: any ) => {
-      this.getPokemon(param['url'])
-    })
-    this.PokemonService.getPokemons(2);
+    console.log('---> ', this.idPokemon)
+    this.getPokemon(this.idPokemon)
   }
 
-  getPokemon(url: string) {
-    this.PokemonService.getPokemon(url);
+  getPokemon(idPokemon: string) {
+    this.PokemonService.getPokemon(idPokemon);
   }
 
 }

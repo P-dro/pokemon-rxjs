@@ -49,7 +49,9 @@ export class PokemonListComponent implements OnInit {
     return Math.round(count / 20);
   }
 
-
+  getPokemon(pokemon: string) {
+    this.route.navigate(['pokemon-detail', pokemon.split('/')[6]]);
+  }
 
   pokemonListPagination(count: number, currentPage: number): Array<number> {
     const totalPages = this.getTotalPages(count);

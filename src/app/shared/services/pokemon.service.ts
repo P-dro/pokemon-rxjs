@@ -13,10 +13,10 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  public getPokemons(page:number) {
-    const offset = (page - 1) * 20; 
+  public getPokemons(page: number) {
+    const offset = (page - 1) * 20;
     console.log(offset)
-    return this.http.get<PokemonListResponse>(`${environment.pokeApi}pokemon?limit=20&offset=${offset}`).
+    return this.http.get<PokemonListResponse>(encodeURI(`${environment.pokeApi}pokemon?limit=20&offset=${offset}`)).
       pipe(
         delay(2000),
         take(1)
@@ -24,11 +24,12 @@ export class PokemonService {
 
   }
 
-  public getPokemon(url: string) {
-    return this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/161/`).
-    pipe(
-      take(1),
-    );
+  public getPokemon(idPokemon: string) {
+    return this.http.get<any>(encodeURI(`${environment.pokeApi}pokemon/${idPokemon}/`)).
+      pipe(
+        delay(2000),
+        take(1)
+      );
   }
 
 }

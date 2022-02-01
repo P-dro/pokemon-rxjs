@@ -11,6 +11,7 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { PokemonService } from './shared/services/pokemon.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

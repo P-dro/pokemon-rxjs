@@ -1,7 +1,7 @@
 <div *ngIf="(pokemonList$ | async) as pokemonsList; else loading">
     <div class="collection">
         <a *ngFor="let pokemonList of pokemonsList.results" class="collection-item"
-            [routerLink]="['/pokemon-detail', pokemonList.url]">{{ pokemonList.name | titlecase }}</a>
+            (click)="getPokemon(pokemonList.url)">{{ pokemonList.name | titlecase }}</a>
     </div>
     <ul class="pagination center" *ngIf="(currentPage$ | async) as currentPage;">
         <li class="waves-effect" [ngClass]="{'disabled': (currentPage - 1 === 0) }"><a
